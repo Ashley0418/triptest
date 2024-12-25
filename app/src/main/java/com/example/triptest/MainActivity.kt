@@ -460,7 +460,7 @@ fun DefaultPreview() {
     BagListScreen(navController = NavHostController(LocalContext.current))
 }
 
-
+//(test1)
 //class MainActivity : ComponentActivity() {
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
