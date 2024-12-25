@@ -184,7 +184,6 @@ fun Main() {
                     )
                 }
 
-
 //                下拉式選單
                 TripPickDropdown(
                     options = options,
@@ -211,11 +210,6 @@ fun Main() {
                 },
             ) {
                 Icon(Icons.Filled.AddCircle, "增加物品")
-//                Spacer(modifier = Modifier.width(150.dp))
-//                Text(
-//                    text = "增加物品",
-//                    fontSize = 20.sp
-//                )
             }
         },
     ) { innerPadding ->
