@@ -1,4 +1,4 @@
-package com.example.tripapp.ui.feature.baggage.baglist
+package com.example.triptest.ui.feature.baggage.baglist
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

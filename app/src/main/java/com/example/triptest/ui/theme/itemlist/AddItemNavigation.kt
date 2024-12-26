@@ -1,4 +1,4 @@
-package com.example.tripapp.ui.feature.baggage.itemlist
+package com.example.triptest.ui.feature.baggage.itemlist
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
