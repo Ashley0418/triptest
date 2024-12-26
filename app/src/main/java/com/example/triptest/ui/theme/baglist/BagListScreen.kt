@@ -113,13 +113,14 @@ fun BagListScreen(navController: NavHostController) {
 //                }
 //            }
 
+//行李箱上方的空白區塊
             Spacer(modifier = Modifier.height(16.dp))
 
 
             // 行李箱圖片 預設225.dp,為了測試改150
             Box(
                 modifier = Modifier
-                    .size(150.dp)
+                    .size(225.dp)
                     .border(
                         width = 4.dp,
                         color =colorResource(id = R.color.green_200),
@@ -155,6 +156,8 @@ fun BagListScreen(navController: NavHostController) {
                 )
             }
 
+//行李箱與下拉選單的空白區塊
+
             Spacer(modifier = Modifier.height(16.dp))
 
         // 下拉式選單
@@ -168,13 +171,16 @@ fun BagListScreen(navController: NavHostController) {
                     .align(Alignment.CenterHorizontally)
             )
 
+//            下拉式選單跟物品清單之間的空白區塊
+
             Spacer(modifier = Modifier.height(16.dp))
 
             // 物品清單
             ScrollContent(innerPadding = PaddingValues())
         }
 
-        // 懸浮增加按鈕
+//         懸浮增加按鈕
+//        有跳頁的route
         FloatingActionButton(
             onClick = {
                 navController.navigate("additem")
@@ -193,7 +199,7 @@ fun BagListScreen(navController: NavHostController) {
     }
 }
 
-
+//TRIP挑選 - 下拉式選單
 @Composable
 fun TripPickDropdown(
     options: List<String>,
@@ -208,21 +214,20 @@ fun TripPickDropdown(
             .background(
                 color = Color(0xFFE8DEF8),
                 shape = RoundedCornerShape(
-                    topStart = 30.dp,
-                    topEnd = 30.dp,
-                    bottomStart = if (menuExpanded.value) 0.dp else 30.dp,  // 未展開時圓角，展開後下端無圓角
-                    bottomEnd = if (menuExpanded.value) 0.dp else 30.dp      // 未展開時圓角，展開後下端無圓角
-
+                    topStart = 12.dp,
+                    topEnd = 12.dp,
+                    bottomStart = if (menuExpanded.value) 0.dp else 12.dp,  // 未展開時圓角，展開後下端無圓角
+                    bottomEnd = if (menuExpanded.value) 0.dp else 12.dp      // 未展開時圓角，展開後下端無圓角
                 )
             )
             .border(
                 width = 1.dp,
                 color = Color(0xFF65558F),
                 shape = RoundedCornerShape(
-                    topStart = 30.dp,
-                    topEnd = 30.dp,
-                    bottomStart = if (menuExpanded.value) 0.dp else 30.dp, // 未展開時圓角，展開後下端無圓角
-                    bottomEnd = if (menuExpanded.value) 0.dp else 30.dp// 未展開時圓角，展開後下端無圓角
+                    topStart = 12.dp,
+                    topEnd = 12.dp,
+                    bottomStart = if (menuExpanded.value) 0.dp else 12.dp, // 未展開時圓角，展開後下端無圓角
+                    bottomEnd = if (menuExpanded.value) 0.dp else 12.dp// 未展開時圓角，展開後下端無圓角
                 )
             )
             .clickable { menuExpanded.value = true }
@@ -232,7 +237,7 @@ fun TripPickDropdown(
             verticalAlignment = Alignment.CenterVertically, // 垂直方向居中
             horizontalArrangement = Arrangement.SpaceBetween, // 水平方向居中
             modifier = Modifier
-                .fillMaxSize() // 填滿父容器
+//                .fillMaxSize() // 填滿父容器
                 .padding(horizontal = 16.dp) // 添加適當的水平內邊距
         ) {
             Icon(
@@ -262,6 +267,8 @@ fun TripPickDropdown(
             )
         }
 
+//        下拉式選單的內容物
+
         DropdownMenu(
             expanded = menuExpanded.value,
             onDismissRequest = { menuExpanded.value = false },
@@ -275,8 +282,8 @@ fun TripPickDropdown(
                         topEnd = 0.dp,
 //                        bottomStart = if (menuExpanded.value) 0.dp else 30.dp,  // 展開後下端無圓角
 //                        bottomEnd = if (menuExpanded.value) 0.dp else 30.dp      // 展開後下端無圓角
-                        bottomStart = if (menuExpanded.value) 30.dp else 0.dp,  // 展開後下端圓角
-                        bottomEnd = if (menuExpanded.value) 30.dp else 0.dp      // 展開後下端圓角
+                        bottomStart = if (menuExpanded.value) 12.dp else 0.dp,  // 展開後下端圓角
+                        bottomEnd = if (menuExpanded.value) 12.dp else 0.dp      // 展開後下端圓角
 
                     )
                 )
@@ -287,8 +294,8 @@ fun TripPickDropdown(
                         topEnd = 0.dp,
 //                        bottomStart = if (menuExpanded.value) 0.dp else 30.dp,  // 開後下端無圓角
 //                        bottomEnd = if (menuExpanded.value) 0.dp else 30.dp      // 展開後下端無圓角
-                        bottomStart = if (menuExpanded.value) 30.dp else 0.dp,  // 展開後下端圓角
-                        bottomEnd = if (menuExpanded.value) 30.dp else 0.dp      // 展開後下端圓角
+                        bottomStart = if (menuExpanded.value) 12.dp else 0.dp,  // 展開後下端圓角
+                        bottomEnd = if (menuExpanded.value) 12.dp else 0.dp      // 展開後下端圓角
                     )
                 )
         ) {
