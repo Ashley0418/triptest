@@ -1,13 +1,3 @@
-//import android.os.Bundle
-//import androidx.activity.ComponentActivity
-//import androidx.activity.compose.setContent
-//import androidx.navigation.compose.NavHost
-//import androidx.navigation.compose.composable
-//import androidx.navigation.compose.rememberNavController
-//import com.example.tripapp.ui.feature.baggage.AddItemScreen
-//import com.example.tripapp.ui.feature.baggage.BagListScreen
-//import com.example.triptest.ui.theme.TriptestTheme
-
 package com.example.triptest
 
 import android.os.Bundle
@@ -156,7 +146,7 @@ fun Main() {
                         }
                     }, scrollBehavior = scrollBehavior
                 )
-                
+
 //                行李箱圖片
                 Box(
                     modifier = Modifier
@@ -322,18 +312,11 @@ fun TripPickDropdown(
                                 .fillMaxWidth() // 選單項目寬度填滿
                                 .height(56.dp) // 與外層 Box 高度一致
                                 .background(
-                                    color = Color(0xFFE8DEF8),
+                                    color = Color(100f,100f,100f,0f)
                                 ),
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.Center
                         ) {
-//                            Icon(
-//                                painter = painterResource(id = R.drawable.baseline_trip_origin_24),
-//                                contentDescription = "Option Icon",
-//                                tint = Color.Gray,
-//                                modifier = Modifier.size(20.dp)
-//                            )
-//                            Spacer(modifier = Modifier.width(20.dp))
                             Text(
                                 text = option,
                                 fontSize = 18.sp,
@@ -459,19 +442,3 @@ fun DefaultPreview() {
     // 你可以用 LocalContext.current 的方式來創建一個臨時的 NavHostController 來使用預覽
     BagListScreen(navController = NavHostController(LocalContext.current))
 }
-
-//(test1)
-//class MainActivity : ComponentActivity() {
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            TriptestTheme {
-//                val navController = rememberNavController()  // 記住 NavController
-//                NavHost(navController = navController, startDestination = "bag list") {
-//                    composable("bag list") { BagListScreen(navController) }
-//                    composable("add item") { AddItemScreen(navController) }
-//                }
-//            }
-//        }
-//    }
-//}
