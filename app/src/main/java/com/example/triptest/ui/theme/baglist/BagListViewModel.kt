@@ -1,6 +1,5 @@
-package com.example.tripapp.ui.feature.baggage
+package com.example.tripapp.ui.feature.baggage.baglist
 
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
@@ -12,6 +11,7 @@ data class Item(
 
 class ItemViewModel : ViewModel() {
     // 模擬的物品清單
+//    表示隱私 外面不可改，只有VIEWMODEL可以改
     private val _items = mutableStateOf(
         List(20) { Item(it, "Item ${it + 1}", false) }
     )

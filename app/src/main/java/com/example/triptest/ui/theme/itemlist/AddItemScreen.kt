@@ -1,4 +1,4 @@
-package com.example.tripapp.ui.feature.baggage
+package com.example.tripapp.ui.feature.baggage.itemlist
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -8,13 +8,17 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+
+@Composable
+fun AddItemRoute(navController: NavHostController) {
+    AddItemScreen(navController)
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("RememberReturnType")
@@ -27,7 +31,7 @@ fun AddItemScreen(navController: NavHostController) {
             TopAppBar(
                 title = { Text("新增物品") },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = {navController.popBackStack()}) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "回到上一頁")
                     }
                 }
