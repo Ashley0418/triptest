@@ -153,16 +153,18 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
-                            Text(
-                                text = title,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold
-                            )
                             Icon(
                                 painter = painterResource(
                                     id = if (isExpanded) R.drawable.baseline_arrow_drop_down_24 else R.drawable.baseline_arrow_right_24
                                 ),
-                                contentDescription = if (isExpanded) "收起" else "展開"
+                                contentDescription = if (isExpanded) "收起" else "展開",
+                                modifier = Modifier.padding(end = 8.dp) // 圖標和文字間距
+                            )
+                            Text(
+                                text = title,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.weight(1f) // 讓文字佔據剩餘空間
                             )
                         }
 
