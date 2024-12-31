@@ -100,6 +100,8 @@ fun AddItemScreen(navController: NavHostController) {
 
         // 可展開的列表
         ExpandableLists(innerPadding = PaddingValues(12.dp))
+
+
     }
 }
 
@@ -121,7 +123,7 @@ fun ExpandableLists(innerPadding: PaddingValues) {
 
     val expandedStates = remember(sections) {
         mutableStateMapOf<Int, Boolean>().apply {
-            sections.indices.forEach { this[it] = true }
+            sections.indices.forEach { this[it] = false }
         }
     }
 
