@@ -7,6 +7,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.input.InputTransformation.Companion.keyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.AccountCircle
@@ -25,10 +27,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.key.onPreInterceptKeyBeforeSoftKeyboard
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -92,7 +99,7 @@ fun AddItemScreen(navController: NavHostController) {
         }
 
         // 可展開的列表
-        ExpandableLists(innerPadding = PaddingValues(16.dp))
+        ExpandableLists(innerPadding = PaddingValues(12.dp))
     }
 }
 
@@ -123,6 +130,8 @@ fun ExpandableLists(innerPadding: PaddingValues) {
     // 用來保存編輯狀態和文字
     val editingItem = remember { mutableStateMapOf<String, Boolean>() }
     val editedText = remember { mutableStateMapOf<String, String>() }
+
+
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -171,7 +180,7 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                         if (isExpanded) {
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
+//                                verticalArrangement = Arrangement.spacedBy(0.dp)
                             ) {
                                 items.forEach { item ->
                                     val isChecked = checkedState[item] ?: false
@@ -179,7 +188,7 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                     Row(
                                         modifier = Modifier
                                             .width(317.dp)
-                                            .height(44.dp)
+                                            .height(52.dp)
                                             .border(
                                                 1.dp,
                                                 colorResource(id = R.color.purple_400),
@@ -192,14 +201,15 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                             )
                                             .padding(
                                                 start = 20.dp,
-                                                top = 10.dp,
+//                                                top = 10.dp,
                                                 end = 20.dp,
-                                                bottom = 10.dp
+//                                                bottom = 10.dp
                                             )
                                             .clickable { checkedState[item] = !isChecked },
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
                                         Icon(
+                                            modifier = Modifier.size(24.dp),
                                             painter = if (isChecked) painterResource(id = R.drawable.ashley_pickoption02) else painterResource(
                                                 id = R.drawable.ashley_pickoption01
                                             ),
@@ -209,13 +219,15 @@ fun ExpandableLists(innerPadding: PaddingValues) {
 
                                         // 當物品處於編輯模式時顯示 TextField，否則顯示文字
                                         if (editingItem[item] == true) {
-                                            TextField(
+                                            OutlinedTextField(
                                                 value = editedText[item] ?: item,
                                                 onValueChange = { editedText[item] = it },
+                                                singleLine = true,
                                                 modifier = Modifier
+                                                    .fillMaxSize()
                                                     .weight(1f)
-                                                    .padding(end = 16.dp)
-
+                                                    .padding(end = 16.dp),
+                                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                                             )
                                         } else {
                                             Text(
@@ -233,6 +245,7 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                             }
                                         }) {
                                             Icon(
+                                                modifier = Modifier.size(24.dp),
                                                 painter = painterResource(id = if (editingItem[item] == true) R.drawable.ashley_edit_done else R.drawable.ashley_edit_text),
                                                 contentDescription = if (editingItem[item] == true) "確定" else "編輯"
                                             )
@@ -258,7 +271,7 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                 Row(
                                     modifier = Modifier
                                         .width(317.dp)
-                                        .height(44.dp)
+                                        .height(52.dp)
                                         .border(
                                             1.dp,
                                             colorResource(id = R.color.purple_400),
@@ -270,9 +283,9 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                         )
                                         .padding(
                                             start = 20.dp,
-                                            top = 10.dp,
+//                                            top = 10.dp,
                                             end = 20.dp,
-                                            bottom = 10.dp
+//                                            bottom = 10.dp
                                         ),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
@@ -284,15 +297,16 @@ fun ExpandableLists(innerPadding: PaddingValues) {
                                     Spacer(modifier = Modifier.width(24.dp))
 
                                     // 新增物品的輸入框
-                                    TextField(
+                                    OutlinedTextField(
                                         value = newItem,
                                         onValueChange = { newItem = it },
                                         placeholder = { Text("新增物品") },
                                         label = null,
                                         modifier = Modifier
-                                            .heightIn(44.dp)
+                                            .fillMaxSize()
                                             .weight(1f)
-                                            .padding(end = 16.dp)
+                                            .padding(end = 16.dp),
+                                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                                     )
 
                                     // 新增按鈕
