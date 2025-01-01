@@ -1,26 +1,48 @@
 package com.example.triptest.ui.feature.baggage.baglist
 
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
-data class Item(
-    val id: Int,
-    val name: String,
-    val isChecked: Boolean
-)
-
-class ItemViewModel : ViewModel() {
-    // 模擬的物品清單
-//    表示隱私 外面不可改，只有VIEWMODEL可以改
-    private val _items = mutableStateOf(
-        List(20) { Item(it, "Item ${it + 1}", false) }
+class BagListViewModel : ViewModel() {
+    // 行程選擇相關
+    val selectedTrip = mutableStateOf("選擇一個行程")
+    val tripOptions = listOf(
+        "trip 1", "trip 2", "trip 3", "trip 4", "trip 5",
+        "trip 6", "trip 7", "trip 8", "trip 9", "trip 10"
     )
-    val items = _items
 
-    // 處理物品勾選狀態的變化
-    fun toggleItemCheck(index: Int) {
-        val updatedItems = _items.value.toMutableList()
-        updatedItems[index] = updatedItems[index].copy(isChecked = !updatedItems[index].isChecked)
-        _items.value = updatedItems
+    // 行李清單相關
+    val itemList = mutableStateListOf<String>().apply {
+        addAll((1..25).map { "Item $it" })
+    }
+    val checkedState = mutableStateMapOf<String, Boolean>()
+    val isEditing = mutableStateOf(false)
+
+    // 選擇行程
+    fun selectTrip(trip: String) {
+        selectedTrip.value = trip
+    }
+
+    // 添加新物品
+    fun addItem(item: String) {
+        itemList.add(item)
+    }
+
+    // 刪除物品
+    fun removeItem(item: String) {
+        itemList.remove(item)
+        checkedState.remove(item)
+    }
+
+    // 切換編輯模式
+    fun toggleEditing() {
+        isEditing.value = !isEditing.value
+    }
+
+    // 標記/取消標記物品
+    fun toggleItemChecked(item: String) {
+        checkedState[item] = !(checkedState[item] ?: false)
     }
 }

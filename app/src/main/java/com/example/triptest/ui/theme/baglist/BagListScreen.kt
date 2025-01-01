@@ -46,15 +46,17 @@ fun BagRoute(navController: NavHostController) {
 }
 
 @Composable
-fun BagListScreen(navController: NavHostController) {
+fun BagListScreen(navController: NavHostController,
+                  viewModel: BagListViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+) {
+    val selectedTrip = viewModel.selectedTrip.value
+    val tripOptions = viewModel.tripOptions
+    val itemList = viewModel.itemList
+    val checkedState = viewModel.checkedState
+    val isEditing = viewModel.isEditing.value
+
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
-    val manuExpanded = remember { mutableStateOf(false) }
-    val selectedOption = remember { mutableStateOf("選擇一個行程") }
-    val options = listOf(
-        "trip 1", "trip 2", "trip 3", "trip 4", "trip 5",
-        "trip 6", "trip 7", "trip 8", "trip 9", "trip 10"
-    )
     // 控制行李箱圖片切換的狀態
     val isSuitcaseImage1 = remember { mutableStateOf(true) }
 
@@ -162,9 +164,9 @@ fun BagListScreen(navController: NavHostController) {
 
         // 下拉式選單
             TripPickDropdown(
-                options = options,
-                selectedOption = selectedOption.value,
-                onOptionSelected = { selectedOption.value = it },
+                options = tripOptions,
+                selectedOption = selectedTrip,
+                onOptionSelected = { viewModel.selectTrip(it) },
                 modifier = Modifier
                     .width(280.dp)
                     .height(74.dp)
